@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Interfaces.Navigation;
 using Interfaces.ViewModels;
-using Services.Interfaces;
 
 namespace Business.ViewModels;
 

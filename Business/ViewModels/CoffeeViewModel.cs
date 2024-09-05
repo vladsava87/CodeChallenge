@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using Interfaces.Data;
 using Interfaces.Navigation;
 using Interfaces.ViewModels;
 using Interfaces.Views;

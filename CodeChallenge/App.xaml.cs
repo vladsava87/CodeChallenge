@@ -1,5 +1,5 @@
-﻿using Interfaces.Views;
-using Services.Interfaces;
+﻿using Interfaces.Navigation;
+using Interfaces.Views;
 
 namespace CodeChallenge;
 

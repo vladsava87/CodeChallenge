@@ -5,6 +5,8 @@ using CodeChallenge.Navigation;
 using CodeChallenge.Views;
 using CommunityToolkit.Maui;
 using FFImageLoading.Maui;
+using Interfaces.Navigation;
+using Interfaces.Services;
 using Interfaces.ViewModels;
 using Interfaces.Views;
 using Microsoft.Extensions.Logging;

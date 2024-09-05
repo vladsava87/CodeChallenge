@@ -1,6 +1,6 @@
 using Interfaces.Views;
 
-namespace Services.Interfaces;
+namespace Interfaces.Services;
 
 public interface IViewService
 {

@@ -1,7 +1,6 @@
-using Interfaces.Navigation;
 using Interfaces.Views;
 
-namespace Services.Interfaces;
+namespace Interfaces.Navigation;
 
 public interface INavigationService
 {

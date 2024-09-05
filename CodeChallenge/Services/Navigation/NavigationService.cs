@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Interfaces.Navigation;
+using Interfaces.Services;
 using Interfaces.ViewModels;
 using Interfaces.Views;
-using Services.Interfaces;
 
 namespace CodeChallenge.Navigation;
 
