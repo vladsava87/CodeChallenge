@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:views="clr-namespace:CodeChallenge.Views"
+          xmlns:maui="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
+          x:Class="CodeChallenge.Views.CoffeeDetailPage"
+          Title="{Binding Coffee.Name}">
+    <views:BasePage.Content>
+        <StackLayout Margin="20">
+            <Label Text="{Binding Coffee.Description}" 
+                   Visual="Material"
+                   FontSize="18" 
+                   HorizontalOptions="Fill" 
+                   HorizontalTextAlignment="Start"
+                   VerticalOptions="Start" />
+            
+            <maui:CachedImage Source="{Binding Coffee.Image}" 
+                              Margin="60, 40"
+                              VerticalOptions="Start" 
+                              Aspect="AspectFit" />
+        </StackLayout>
+    </views:BasePage.Content>
+</views:BasePage>
