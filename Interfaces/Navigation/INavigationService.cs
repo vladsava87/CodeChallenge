@@ -8,5 +8,4 @@ public interface INavigationService
     Task InitializeAsync(Type page);
     Task PushAsync(Type pageKey, INavigationParameters parameter = null, bool animated = true);
     Task PopAsync(INavigationParameters parameter = null, bool animated = true);
-    Task PopToRootAsync();
 }
