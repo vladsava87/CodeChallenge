@@ -4,12 +4,14 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:views="clr-namespace:CodeChallenge.Views"
                 x:Name="CoffeePageView"
+                AutomationId="CoffeePage"
                 Shell.NavBarIsVisible="False"
                 x:Class="CodeChallenge.Views.CoffeePage">
     <views:BasePage.Content>
         <StackLayout Margin="20">
             <Label Text="Coffee bar" 
                    Visual="Material"
+                   AutomationId="CoffeePage_Title_Label"
                    FontSize="Large" 
                    Margin="30"
                    HorizontalOptions="Center" 
@@ -17,19 +19,21 @@
             <CollectionView ItemsSource="{Binding CoffeeProducts}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <HorizontalStackLayout>
-                            <Label Text="{Binding Name}" 
-                                   Visual="Material"
-                                   FontSize="16" 
-                                   Margin="10"
-                                   HorizontalOptions="Start" 
-                                   VerticalOptions="Center" >
-                            </Label>
-                            <HorizontalStackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding BindingContext.SelectedCoffeeProductCommand, Source={x:Reference CoffeePageView}}" 
-                                                      CommandParameter="{Binding Id}" />
-                            </HorizontalStackLayout.GestureRecognizers>
-                        </HorizontalStackLayout>
+                        <Border>
+                            <HorizontalStackLayout AutomationId="{Binding Id, StringFormat='CoffeeItem_{0}'}">
+                                <Label Text="{Binding Name}" 
+                                       Visual="Material"
+                                       FontSize="16" 
+                                       Margin="10"
+                                       HorizontalOptions="Start" 
+                                       VerticalOptions="Center" >
+                                </Label>
+                                <HorizontalStackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.SelectedCoffeeProductCommand, Source={x:Reference CoffeePageView}}" 
+                                                          CommandParameter="{Binding Id}" />
+                                </HorizontalStackLayout.GestureRecognizers>
+                            </HorizontalStackLayout>
+                        </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

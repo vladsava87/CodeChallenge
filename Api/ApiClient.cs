@@ -2,7 +2,7 @@ using RestSharp;
 
 namespace Api;
 
-public abstract  class ApiClient
+public abstract class ApiClient
 {
     protected readonly IRestClient RestClient;
 
@@ -13,5 +13,10 @@ public abstract  class ApiClient
         };
             
         RestClient = new RestClient(options);
+    }
+
+    protected ApiClient(IRestClient restClient)
+    {
+        RestClient = restClient;
     }
 }

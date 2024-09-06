@@ -13,6 +13,14 @@ namespace Api;
 
 public class CoffeeApiClient : ApiClient, ICoffeeApiClient
 {
+    public CoffeeApiClient() : base()
+    {
+    }
+    
+    public CoffeeApiClient(IRestClient restClient) : base(restClient)
+    {
+    }
+
     public async Task<IList<CoffeeModel>> GetAllCoffeeTypesAsync()
     {
         List<CoffeeModel> coffeeModels = null;
@@ -22,7 +30,7 @@ public class CoffeeApiClient : ApiClient, ICoffeeApiClient
             var request = new RestRequest(ApiConstants.CoffeeEndpoints.GetAllCoffeeTypes)
                 .AddHeader("Accept", "application/vnd.api+json");
 
-            var jsonResponse = await RestClient.GetAsync(request).ConfigureAwait(false);
+            var jsonResponse = await RestClient.ExecuteAsync(request).ConfigureAwait(false);
 
             if (jsonResponse is { IsSuccessful: true, Content: not null })
             {
@@ -47,7 +55,7 @@ public class CoffeeApiClient : ApiClient, ICoffeeApiClient
                 .AddHeader("Accept", "application/vnd.api+json")
                 .AddUrlSegment("id", id);
 
-            var jsonResponse = await RestClient.GetAsync(request).ConfigureAwait(false);
+            var jsonResponse = await RestClient.ExecuteAsync(request).ConfigureAwait(false);
 
             if (jsonResponse is { IsSuccessful: true, Content: not null })
             {

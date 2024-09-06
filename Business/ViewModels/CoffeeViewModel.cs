@@ -1,7 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
-using Interfaces.Data;
 using Interfaces.Navigation;
 using Interfaces.ViewModels;
 using Interfaces.Views;
@@ -16,15 +15,15 @@ public class CoffeeViewModel : BaseViewModel, ICoffeeViewModel
 {
     private readonly ICoffeeService _coffeeService;
 
-    private ObservableCollection<CoffeeModel> _coffeeProducts;
+    private ObservableCollection<CoffeeModel> _coffeeProducts = new();
     public ObservableCollection<CoffeeModel> CoffeeProducts
     {
         get => _coffeeProducts;
         set => SetProperty(ref _coffeeProducts, value);
     }
     
-    private ICommand _selectedCoffeeProductCommand;
-    public ICommand SelectedCoffeeProductCommand
+    private IAsyncRelayCommand _selectedCoffeeProductCommand;
+    public IAsyncRelayCommand SelectedCoffeeProductCommand
     {
         get
         {
@@ -44,7 +43,7 @@ public class CoffeeViewModel : BaseViewModel, ICoffeeViewModel
         var coffeeProducts = await _coffeeService.GetAllCoffeeTypesAsync();
         CoffeeProducts = new ObservableCollection<CoffeeModel>(coffeeProducts);
 
-        return true;//await base.OnViewModelCreatedAsync(parameters);
+        return await base.OnViewModelCreatedAsync(parameters);
     }
     
     private async Task OnSelectedCoffeeProductCommand(int arg)

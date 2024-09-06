@@ -5,12 +5,14 @@
           xmlns:views="clr-namespace:CodeChallenge.Views"
           xmlns:maui="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
           x:Class="CodeChallenge.Views.CoffeeDetailPage"
+          AutomationId="CoffeeDetailsPage"
           Title="{Binding Coffee.Name}">
     <views:BasePage.Content>
         <StackLayout Margin="20">
             <Label Text="{Binding Coffee.Description}" 
                    Visual="Material"
                    FontSize="18" 
+                   AutomationId="CoffeeDetailsPage_Description_Text"
                    HorizontalOptions="Fill" 
                    HorizontalTextAlignment="Start"
                    VerticalOptions="Start" />
