@@ -1,12 +1,11 @@
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
-using UITests;
 
 namespace UnitTests.UI.Init;
 
 public abstract class BaseTest
 {
-    protected AppiumDriver App => AppiumSetup.App;
+    protected AppiumDriver App { get; set; }
 
     // This could also be an extension method to AppiumDriver if you prefer
     protected AppiumElement FindUIElement(string id)

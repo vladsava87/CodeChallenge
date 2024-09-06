@@ -4,14 +4,14 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:views="clr-namespace:CodeChallenge.Views"
                 x:Name="CoffeePageView"
-                AutomationId="CoffeePage"
                 Shell.NavBarIsVisible="False"
                 x:Class="CodeChallenge.Views.CoffeePage">
     <views:BasePage.Content>
         <StackLayout Margin="20">
             <Label Text="Coffee bar" 
+                   x:Name="CoffeePageTitleLabel"
                    Visual="Material"
-                   AutomationId="CoffeePage_Title_Label"
+                   AutomationId="CoffeePageTitleLabel"
                    FontSize="Large" 
                    Margin="30"
                    HorizontalOptions="Center" 
@@ -20,7 +20,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Border>
-                            <HorizontalStackLayout AutomationId="{Binding Id, StringFormat='CoffeeItem_{0}'}">
+                            <HorizontalStackLayout AutomationId="{Binding Id, StringFormat='CoffeeItem{0}'}">
                                 <Label Text="{Binding Name}" 
                                        Visual="Material"
                                        FontSize="16" 

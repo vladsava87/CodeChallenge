@@ -1,37 +1,3 @@
-// using OpenQA.Selenium.Appium;
-// using OpenQA.Selenium.Appium.Android;
-// using OpenQA.Selenium.Appium.iOS;
-//
-// namespace UnitTests.UI;
-//
-// public static class AppInitializer
-// {
-//     public static AppiumDriver StartAndroidApp(string apkPath)
-//     {
-//         var appiumOptions = new AppiumOptions
-//         {
-//             PlatformName = "Android",
-//             DeviceName = "Android Emulator",
-//             App = apkPath,
-//             AutomationName = "UiAutomator2"
-//         };
-//
-//         return new AndroidDriver(new Uri("http://127.0.0.1:4723/"), appiumOptions);
-//     }
-//
-//     public static AppiumDriver StartiOSApp(string appPath)
-//     {
-//         var appiumOptions = new AppiumOptions
-//         {
-//             PlatformName = "iOS",
-//             DeviceName = "iPhone Simulator",
-//             App = appPath,
-//             AutomationName = "XCUITest"
-//         };
-//
-//         return new IOSDriver(new Uri("http://127.0.0.1:4723/wd/hub"), appiumOptions);
-//     }
-// }
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.Enums;
@@ -41,12 +7,10 @@ namespace UITests;
 [SetUpFixture]
 public class AppiumSetup
 {
-	private static AppiumDriver? _driver;
-
-	public static AppiumDriver App => _driver ?? throw new NullReferenceException("AppiumDriver is null");
+	private AppiumDriver? _driver;
 
 	[OneTimeSetUp]
-	public void RunBeforeAnyTests()
+	public AppiumDriver RunBeforeAnyTests()
 	{
 #if (includeAppiumServerStartup)
 		// If you started an Appium server manually, make sure to comment out the next line
@@ -59,24 +23,23 @@ public class AppiumSetup
 			AutomationName = "UIAutomator2",
 			// Always Android for Android
 			PlatformName = "Android",
+			DeviceName = "Android Emulator",
 
 			// RELEASE BUILD SETUP
 			// The full path to the .apk file
 			// This only works with release builds because debug builds have fast deployment enabled
 			// and Appium isn't compatible with fast deployment
-			App = Path.Join(TestContext.CurrentContext.TestDirectory, "../../../../MauiApp/bin/Release/net8.0-android/com.companyname.codechallenge-Signed.apk"),
+			App = Path.Join(TestContext.CurrentContext.TestDirectory, "../../../../CodeChallenge/bin/Release/net8.0-android/com.companyname.codechallenge-Signed.apk"),
 			// END RELEASE BUILD SETUP
 		};
-
-		var t = TestContext.CurrentContext.TestDirectory;
-
+		
 		// DEBUG BUILD SETUP
         // If you're running your tests against debug builds you'll need to set NoReset to true
         // otherwise appium will delete all the libraries used for Fast Deployment on Android
         // Release builds have Fast Deployment disabled
         // https://learn.microsoft.com/xamarin/android/deploy-test/building-apps/build-process#fast-deployment
         androidOptions.AddAdditionalAppiumOption(MobileCapabilityType.NoReset, "true");
-        androidOptions.AddAdditionalAppiumOption(AndroidMobileCapabilityType.AppPackage, "appIdentifier");
+        androidOptions.AddAdditionalAppiumOption(AndroidMobileCapabilityType.AppPackage, "com.companyname.codechallenge");
 
         //Make sure to set [Register("appIdentifier.MainActivity")] on the MainActivity of your android application
 		androidOptions.AddAdditionalAppiumOption(AndroidMobileCapabilityType.AppActivity, $"appIdentifier.MainActivity");
@@ -91,6 +54,7 @@ public class AppiumSetup
         // Note there are many more options that you can use to influence the app under test according to your needs
 
         _driver = new AndroidDriver(androidOptions);
+        return _driver;
 	}
 
 	[OneTimeTearDown]
