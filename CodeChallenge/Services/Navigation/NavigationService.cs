@@ -64,6 +64,12 @@ public class NavigationService : INavigationService
             {
                 await MainThread.InvokeOnMainThreadAsync(async () =>
                 {
+                    if (Shell.Current.CurrentPage.BindingContext is IBasePageViewModel
+                        oldViewModel)
+                    {
+                        await oldViewModel.OnDisappearAsync();
+                    }
+                    
                     await Shell.Current.Navigation.PopAsync(animated);
 
                     if (Shell.Current.CurrentPage.BindingContext is IBasePageViewModel
