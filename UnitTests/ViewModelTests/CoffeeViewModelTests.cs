@@ -20,7 +20,7 @@ public class CoffeeViewModelTests
     [SetUp]
     public void Setup()
     {
-        _mockCoffeeService = new Mock<ICoffeeService>();
+        _mockCoffeeService =  new Mock<ICoffeeService>();
         _mockNavigationService = new Mock<INavigationService>();
 
         _coffeeViewModel = new CoffeeViewModel(_mockCoffeeService.Object, _mockNavigationService.Object);
@@ -35,7 +35,6 @@ public class CoffeeViewModelTests
             .ReturnsAsync(_coffeeModels);
 
         await _coffeeViewModel.OnViewModelCreatedAsync();
-
         
         Assert.That(_coffeeViewModel.CoffeeProducts, !Is.EqualTo(null));
         Assert.That(3, Is.EqualTo(_coffeeViewModel.CoffeeProducts.Count));

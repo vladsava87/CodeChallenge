@@ -1,26 +1,27 @@
-﻿using Api.Interfaces;
-using Interfaces.Data;
-using Models.Coffee;
+﻿using Models.Coffee;
 using Services.Interfaces;
 
 namespace Services;
 
 public class CoffeeService : ICoffeeService
 {
-    private ICoffeeApiClient _coffeeApiClient;
-    
-    public CoffeeService(ICoffeeApiClient coffeeApiClient)
+    public async Task<IList<CoffeeModel>> GetAllCoffeeTypesAsync()
     {
-        _coffeeApiClient = coffeeApiClient;
+        return GetCoffees();
     }
     
-    public Task<IList<CoffeeModel>> GetAllCoffeeTypesAsync()
+    public async Task<CoffeeModel> GetCoffeeByIdAsync(int id)
     {
-        return _coffeeApiClient.GetAllCoffeeTypesAsync();
+        return GetCoffees().FirstOrDefault(c => c.Id == id);
     }
     
-    public Task<CoffeeModel> GetCoffeeByIdAsync(int id)
+    private List<CoffeeModel> GetCoffees()
     {
-        return _coffeeApiClient.GetCoffeeByIdAsync(id);
+        return
+        [
+            new CoffeeModel { Id = 1, Name = "Espresso", Description = "A strong and concentrated coffee made by forcing hot water through finely-ground coffee beans.", Image = "espresso"},
+            new CoffeeModel { Id = 2, Name = "Cappuccino", Description = "Equal parts espresso, steamed milk, and milk foam, creating a creamy and frothy drink.", Image = "capuccino"},
+            new CoffeeModel { Id = 3, Name = "Latte", Description = "Similar to a cappuccino but with more steamed milk and less foam, resulting in a milder flavor.", Image = "latte"}
+        ];
     }
 }

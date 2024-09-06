@@ -1,6 +1,4 @@
-﻿using Api;
-using Api.Interfaces;
-using Business.ViewModels;
+﻿using Business.ViewModels;
 using CodeChallenge.Navigation;
 using CodeChallenge.Views;
 using CommunityToolkit.Maui;
@@ -45,7 +43,6 @@ public static class MauiProgram
     {
         mauiApp.Services.AddSingleton<IViewService, ViewService>();
         mauiApp.Services.AddSingleton<INavigationService, NavigationService>();
-        mauiApp.Services.AddSingleton<ICoffeeApiClient, CoffeeApiClient>();
         mauiApp.Services.AddSingleton<ICoffeeService, CoffeeService>();
     }
     
